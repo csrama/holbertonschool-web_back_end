@@ -1,13 +1,21 @@
 #!/usr/bin/env python3
-"""Async generator that yields random numbers every second."""
+"""Measure runtime of four async comprehensions."""
 
 import asyncio
-import random
-from typing import Generator
+import time
+
+async_comprehension = __import__('1-async_comprehension').async_comprehension
 
 
-async def async_generator() -> Generator[float, None, None]:
-    """Yield random numbers between 0 and 10 every second."""
-    for _ in range(10):
-        await asyncio.sleep(1)
-        yield random.uniform(0, 10)
+async def measure_runtime() -> float:
+    """Run async_comprehension 4 times in parallel and return total time."""
+    start = time.perf_counter()
+
+    await asyncio.gather(
+        async_comprehension(),
+        async_comprehension(),
+        async_comprehension(),
+        async_comprehension()
+    )
+
+    return time.perf_counter() - start
