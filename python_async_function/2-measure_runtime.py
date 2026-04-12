@@ -2,19 +2,17 @@
 """Module that measures the average runtime of wait_n."""
 
 import time
-from typing import Callable
+import asyncio
 
 wait_n = __import__('1-concurrent_coroutines').wait_n
 
 
 def measure_time(n: int, max_delay: int) -> float:
-    """Return average execution time of wait_n(n, max_delay)."""
-    start_time = time.time()
+    """Return average time per wait_n execution."""
+    start = time.time()
 
-    import asyncio
     asyncio.run(wait_n(n, max_delay))
 
-    end_time = time.time()
+    end = time.time()
 
-    return (end_time - start_time) / n
-  
+    return (end - start) / n
