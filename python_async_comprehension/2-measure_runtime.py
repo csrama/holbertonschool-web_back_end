@@ -18,6 +18,4 @@ async def measure_runtime() -> float:
         async_comprehension()
     )
 
-    end = time.perf_counter()
-
-    return end - start
+    return time.perf_counter() - start
