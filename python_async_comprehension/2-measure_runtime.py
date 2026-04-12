@@ -2,8 +2,7 @@
 """Module that measures runtime of four async comprehensions."""
 
 import asyncio
-import time
-from typing import float  
+import time 
 
 async_comprehension = __import__('1-async_comprehension').async_comprehension
 
